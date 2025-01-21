@@ -11,7 +11,7 @@
 #    scrape_interval: 5s
 #    static_configs:
 #    - targets:
-#      - 172.20.0.1:9323
+#      - docker:9323
 
 
 scrape_configs:
@@ -20,7 +20,7 @@ scrape_configs:
     scrape_timeout: 5s
 
     static_configs:
-      - targets: ['172.20.0.3:9090']
+      - targets: ['prometheus:9090']  #add the private ip address
 
   - job_name: 'cadvisor'
 
@@ -28,14 +28,14 @@ scrape_configs:
     scrape_timeout: 5s
 
     static_configs:
-      - targets: ['172.20.0.2:8080']
+      - targets: ['cadvisor:8080']  #add the private ip address
 
 
 
 #scrape_configs:
 #  - job_name: 'cadvisor'
 #    static_configs:
-#      - targets: ['172.20.0.3:9090, 172.20.0.2:8080']
+#      - targets: ['prometheus:9090, cadvisor:8080']
 #    relabel_configs:
 #      - source_labels: [container_name]
 #        regex: 'apache'
